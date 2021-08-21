@@ -8,6 +8,7 @@ from time import sleep
 import serial
 from PIL import Image
 from flask_cors import CORS, cross_origin
+from werkzeug.utils import secure_filename	
 
 photo_printer_name = 'SELPHY-CP1300'
 
@@ -16,15 +17,20 @@ CORS(app)
 cups_connection = cups.Connection()
 
 @app.route('/submit', methods = ['POST'])
-def user(user_id):
+def submit(image_file):
     if request.method == 'POST':
-    	pass
+		file = request.files['file']
+   		if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            image_path = os.path.join('./uploaded_images', filename)
+            file.save(image_path)
+            print_image(image_path)
 
-def print_image():
+def print_image(image_path='test.jpg'):
 	# Save the picture to a temporary file for printing
 	from tempfile import mktemp
 	im = Image.new('RGB', (683, 384))
-	im.paste(Image.open('test.jpg').resize((683, 384)), ( 0, 0, 683, 384))
+	im.paste(Image.open(image_path).resize((683, 384)), ( 0, 0, 683, 384))
 	output = mktemp(prefix='jpg')
 	im.save(output, format='jpeg')
 
