@@ -19,8 +19,6 @@ def user(user_id):
     	pass
 
 def print_image():
-	printers = cups_connection.getPrinters()
-
 	# Save the picture to a temporary file for printing
 	from tempfile import mktemp
 	im = Image.new('RGB', (683, 384))
@@ -29,7 +27,7 @@ def print_image():
 	im.save(output, format='jpeg')
 
 	# Send the picture to the printer
-	print_id = conn.printFile(printer_name, output, "Photo Booth", {})
+	print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
 
 	# Wait until the job finishes
 	from time import sleep
