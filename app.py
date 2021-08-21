@@ -5,6 +5,7 @@ import cups
 # import Image
 from tempfile import mktemp
 from time import sleep
+import os
 import serial
 from PIL import Image
 from flask_cors import CORS, cross_origin
@@ -19,8 +20,9 @@ cups_connection = cups.Connection()
 @app.route('/submit', methods = ['POST'])
 def submit():
     if request.method == 'POST':
+        print(request.files.keys())
         file = request.files['file']
-        if file and allowed_file(file.filename):
+        if file:
             filename = secure_filename(file.filename)
             image_path = os.path.join('./uploaded_images', filename)
             file.save(image_path)
@@ -35,11 +37,11 @@ def print_image(image_path='test.jpg'):
     im.save(output, format='jpeg')
 
     # Send the picture to the printer
-    print_id = cups.printFile(photo_printer_name, output, "Photo Booth", {})
+    print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
 
     # Wait until the job finishes
     from time import sleep
-    while conn.getJobs().get(print_id, None):
+    while cups_connection.getJobs().get(print_id, None):
         sleep(1)
 
     print("yo finished")
