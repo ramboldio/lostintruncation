@@ -7,7 +7,7 @@ from tempfile import mktemp
 from time import sleep
 import serial
 from PIL import Image
-
+from Adafruit_Thermal import *
 
 photo_printer_name = 'SELPHY-CP1300'
 
