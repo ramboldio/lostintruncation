@@ -7,13 +7,11 @@ from tempfile import mktemp
 from time import sleep
 import serial
 from PIL import Image
-from Adafruit_Thermal import *
 
 photo_printer_name = 'SELPHY-CP1300'
 
 app = Flask(__name__)
 cups_connection = cups.Connection()
-thermal_printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 
 @app.route('/submit', methods = ['POST'])
 def user(user_id):
@@ -29,7 +27,7 @@ def print_image():
 	im.save(output, format='jpeg')
 
 	# Send the picture to the printer
-	print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
+	print_id = cups.printFile(photo_printer_name, output, "Photo Booth", {})
 
 	# Wait until the job finishes
 	from time import sleep
@@ -40,7 +38,8 @@ def print_image():
 
 
 def print_text(text="yoyoyoyoyo"):
-	thermal_printer.println(text)
+	ser = serial.Serial("/dev/serial0", baudrate=19200)
+	ser.write(bytes(text + "\n", 'ascii'))
 
 # print_image()
 print_text()
