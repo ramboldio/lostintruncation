@@ -39,7 +39,7 @@ def print_image():
 	print("yo finished")
 
 
-def print_text(text="yoyoyoyoyo")
+def print_text(text="yoyoyoyoyo"):
 	uart = serial.Serial("/dev/serial0", baudrate=19200, timeout=3000)
 	ser.write("text\r\n")
 
