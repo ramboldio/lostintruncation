@@ -8,10 +8,12 @@ from time import sleep
 import serial
 from PIL import Image
 
+
 photo_printer_name = 'SELPHY-CP1300'
 
 app = Flask(__name__)
 cups_connection = cups.Connection()
+thermal_printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 
 @app.route('/submit', methods = ['POST'])
 def user(user_id):
@@ -38,8 +40,7 @@ def print_image():
 
 
 def print_text(text="yoyoyoyoyo"):
-	ser = serial.Serial("/dev/serial0", baudrate=19200, timeout=3000)
-	ser.write(bytes(text, 'ascii'))
+	thermal_printer.println(text)
 
 # print_image()
 print_text()
