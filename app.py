@@ -7,10 +7,12 @@ from tempfile import mktemp
 from time import sleep
 import serial
 from PIL import Image
+from flask_cors import CORS, cross_origin
 
 photo_printer_name = 'SELPHY-CP1300'
 
 app = Flask(__name__)
+CORS(app)
 cups_connection = cups.Connection()
 
 @app.route('/submit', methods = ['POST'])
@@ -42,4 +44,4 @@ def print_text(text="yoyoyoyoyo"):
 	ser.write(bytes(text + "\n", 'ascii'))
 
 # print_image()
-print_text()
+# print_text()
