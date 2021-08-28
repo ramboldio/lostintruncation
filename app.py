@@ -28,13 +28,13 @@ def submit():
             filename = secure_filename(file.filename)
             image_path = os.path.join('./uploaded_images', filename)
             file.save(image_path)
-            stylized_iamge_path = stylize_image_colab(image_path)
-            print_image(stylized_iamge_path)
+            stylized_image_path = stylize_image_colab(image_path)
+            print_image(stylized_image_path)
 
 def stylize_image_colab(filename):
     output_filename = 'stylized-image.png'
 
-    files = {'file': open('filename', 'rb')}
+    files = {'file': open(filename, 'rb')}
     response = requests.post(ENV['COLABURL'], files=files)
     file = open(output_filename, "wb")
     file.write(response.content)
