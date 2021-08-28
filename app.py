@@ -35,7 +35,7 @@ def stylize_image_colab(filename):
     output_filename = 'stylized-image.png'
 
     files = {'file': open(filename, 'rb')}
-    response = requests.post(ENV['COLABURL'], files=files)
+    response = requests.post(os.environ.get('COLABURL'), files=files)
     file = open(output_filename, "wb")
     file.write(response.content)
     file.close()
