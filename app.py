@@ -30,6 +30,7 @@ def submit():
             file.save(image_path)
             stylized_image_path = stylize_image_colab(image_path)
             print_image(stylized_image_path)
+            return "success"
 
 def stylize_image_colab(filename):
     output_filename = 'stylized-image.png'
