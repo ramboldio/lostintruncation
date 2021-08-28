@@ -15,7 +15,7 @@ Make sure to set the `COLABURL` environment variable to the correct endpoint whe
 ## Architecture
 ```
 			 	/----- HTTP ----> Image & Text Generation (CoLab)
-web app <--- HPPT -------> Server <--- CUPS ----> photo printer
+web app <--- HTTP -------> Server <--- CUPS ----> photo printer
 				^ ^--- CUPS ----> receipt printer (for images)
 				 \---- SERIAL --> receipt printer (for text)
 ```
