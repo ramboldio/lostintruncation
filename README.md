@@ -12,8 +12,10 @@ restart may be a good idea after installation
 
 ## Architecture
 ```
-web app <--- WiFi/REST ---> Server <--- CUPS ---> photo printer
-				^------ SERIAL -> receipt printer
+			 	/----- HTTP ----> Image & Text Generation (CoLab)
+web app <--- HPPT -------> Server <--- CUPS ----> photo printer
+				^ ^--- CUPS ----> receipt printer (for images)
+				 \---- SERIAL --> receipt printer (for text)
 ```
 
 ## Hooking up the Thermal Printer to the Raspberry Pi
