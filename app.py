@@ -22,13 +22,14 @@ cups_connection = cups.Connection()
 @app.route('/submit', methods = ['POST'])
 def submit():
     if request.method == 'POST':
-        print(request.files.keys())
         file = request.files['file']
         if file:
             filename = secure_filename(file.filename)
             image_path = os.path.join('./uploaded_images', filename)
             file.save(image_path)
+            print("start colab generation process")
             stylized_image_path = stylize_image_colab(image_path)
+            print("recieved stylized image; start printing")
             print_image(stylized_image_path)
             return "success"
 
@@ -46,8 +47,8 @@ def stylize_image_colab(filename):
 def print_image(image_path='test.jpg'):
     # Save the picture to a temporary file for printing
     from tempfile import mktemp
-    im = Image.new('RGB', (683, 384))
-    im.paste(Image.open(image_path).resize((683, 384)), ( 0, 0, 683, 384))
+    im = Image.new('RGB', (1024, 1024))
+    im.paste(Image.open(image_path).resize((1024, 1024)), ( 0, 0, 1024, 1024))
     output = mktemp(prefix='jpg')
     im.save(output, format='jpeg')
 
