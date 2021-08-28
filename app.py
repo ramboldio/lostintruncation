@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 
 import cups
+import requests
 # import Image
 from tempfile import mktemp
 from time import sleep
@@ -11,7 +12,8 @@ from PIL import Image
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename  
 
-photo_printer_name = 'SELPHY-CP1300'
+#photo_printer_name = 'SELPHY-CP1300'
+photo_printer_name = 'ZJ-58'
 
 app = Flask(__name__)
 CORS(app)
@@ -26,7 +28,19 @@ def submit():
             filename = secure_filename(file.filename)
             image_path = os.path.join('./uploaded_images', filename)
             file.save(image_path)
-            print_image(image_path)
+            stylized_iamge_path = stylize_image_colab(image_path)
+            print_image(stylized_iamge_path)
+
+def stylize_image_colab(filename):
+    output_filename = 'stylized-image.png'
+
+    files = {'file': open('filename', 'rb')}
+    response = requests.post(ENV['COLABURL'], files=files)
+    file = open(output_filename, "wb")
+    file.write(response.content)
+    file.close()
+    return output_filename
+
 
 def print_image(image_path='test.jpg'):
     # Save the picture to a temporary file for printing
