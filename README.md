@@ -11,9 +11,10 @@ thermal printer stuff is from here: https://github.com/adafruit/Python-Thermal-P
 restart may be a good idea after installation
 
 ## Architecture
-
+```
 web app <--- WiFi/REST ---> Server <--- CUPS ---> photo printer
 				^------ SERIAL -> receipt printer
+```
 
 ## Install Raspi Access Point
 ```
