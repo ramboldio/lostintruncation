@@ -21,6 +21,11 @@ cups_connection = cups.Connection()
 
 colab_url = os.environ.get('COLABURL')
 
+
+@app.route('/ui/<path:path>')
+def serve_ui(path):
+    return send_from_directory('ui', path)
+
 @app.route('/submit', methods = ['POST'])
 def submit():
     if request.method == 'POST':
@@ -76,8 +81,10 @@ def print_image(image_path='test.jpg'):
 
 
 def print_text(text="yoyoyoyoyo"):
+    text = text.encode("ascii", "ignore").decode()
     ser = serial.Serial("/dev/serial0", baudrate=19200)
     ser.write(bytes(text + "\n", 'ascii'))
+    
 #    ser.write(bytes(text + "\n"))
 
 # print_image()
