@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request
+from flask import request, send_from_directory
 
 import cups
 import requests
@@ -10,21 +10,17 @@ import os
 import serial
 from PIL import Image
 from flask_cors import CORS, cross_origin
-from werkzeug.utils import secure_filename  
+from werkzeug.utils import secure_filename
 
 #photo_printer_name = 'SELPHY-CP1300'
 photo_printer_name = 'ZJ-58'
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='',  static_folder='ui')
 CORS(app)
 cups_connection = cups.Connection()
 
 colab_url = os.environ.get('COLABURL')
 
-
-@app.route('/ui/<path:path>')
-def serve_ui(path):
-    return send_from_directory('ui', path)
 
 @app.route('/submit', methods = ['POST'])
 def submit():
