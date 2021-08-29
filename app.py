@@ -19,6 +19,8 @@ app = Flask(__name__)
 CORS(app)
 cups_connection = cups.Connection()
 
+colab_url = os.environ.get('COLABURL')
+
 @app.route('/submit', methods = ['POST'])
 def submit():
     if request.method == 'POST':
@@ -33,11 +35,21 @@ def submit():
             print_image(stylized_image_path)
             return "success"
 
+@app.route('/submit_text', methods = ['POST'])
+def submit_text():
+    input_text = request.form['text']
+    print("start generation process")
+    response_text = requests.post(colab_url + "/generate_text", data={"text": input_text}).text
+    print("start printing process")
+    print(response_text)
+    print_text(response_text)
+    return "success"
+
 def stylize_image_colab(filename):
     output_filename = 'stylized-image.png'
 
     files = {'file': open(filename, 'rb')}
-    response = requests.post(os.environ.get('COLABURL'), files=files)
+    response = requests.post(colab_url + "/generate_image", files=files)
     file = open(output_filename, "wb")
     file.write(response.content)
     file.close()
@@ -66,6 +78,7 @@ def print_image(image_path='test.jpg'):
 def print_text(text="yoyoyoyoyo"):
     ser = serial.Serial("/dev/serial0", baudrate=19200)
     ser.write(bytes(text + "\n", 'ascii'))
+#    ser.write(bytes(text + "\n"))
 
 # print_image()
 # print_text()
