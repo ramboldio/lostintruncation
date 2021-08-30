@@ -35,7 +35,7 @@ function storeVar(el) {
 	const formData = new FormData();
 	formData.append('text', value);
 
-	fetch('http://192.168.178.57:5000/submit_text', { 
+	fetch('http://192.168.50.201:5000/submit_text', { 
 		method: 'POST',
 		body: formData
 	}).then(
@@ -78,7 +78,7 @@ function upload() {
 		const formData = new FormData();
 		formData.append('file', imgFile);
 
-		fetch('http://192.168.178.57:5000/submit', { // Your POST endpoint
+		fetch('http://192.168.50.201:5000/submit', { // Your POST endpoint
 			method: 'POST',
 			body: formData
 		}).then(
