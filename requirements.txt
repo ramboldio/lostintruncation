@@ -3,3 +3,4 @@ pycups
 pillow
 PySerial
 flask-cors
+requests
