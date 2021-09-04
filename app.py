@@ -28,9 +28,9 @@ app.config["BASE_URL"] = public_url
 cups_connection = cups.Connection()
 colab_url = os.environ.get('COLABURL')
 
-@app.route('/ngrok')
+@app.route('/')
 def redirect_to_ngrok():
-    return redirect(public_url, code=302)
+    return redirect(public_url + "/index.html", code=302)
 
 @app.route('/submit', methods = ['POST'])
 def submit():
