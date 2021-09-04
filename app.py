@@ -11,7 +11,7 @@ from flask import request, send_from_directory
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 
-photo_printer_name = 'PDF'
+photo_printer_name = 'Canon-SELPHY-CP1300'
 #photo_printer_name = 'ZJ-58'
 
 app = Flask(__name__, static_url_path='',  static_folder='ui')
