@@ -11,7 +11,7 @@ from flask import request, send_from_directory
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 
-photo_printer_name = 'Canon-SELPHY-CP1300'
+photo_printer_name = 'PDF'
 #photo_printer_name = 'ZJ-58'
 
 app = Flask(__name__, static_url_path='',  static_folder='ui')
@@ -60,14 +60,12 @@ def print_image(image_path='test.jpg'):
     # Save the picture to a temporary file for printing
     output = mktemp(prefix='jpg')
     img = Image.open(image_path)
-    # make sure that the images are square
-    img.thumbnail((1024, 1024))
     # generate 2x2 grid
     img_grid = image_grid(img, 2, 2, margin=100)
     # add white border
     img_grid = ImageOps.expand(img_grid, border=100, fill='white')
     img_grid.save(output, format='jpeg')
-    img_grid.show()
+    # img_grid.show()
     # Send the picture to the printer
     print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
 
@@ -85,7 +83,7 @@ def print_text(text="yoyoyoyoyo"):
 
 def image_grid(img, rows=2, cols=2, margin=30):
     w, h = img.size
-    grid = Image.new('RGB', size=(cols*w, rows*h), color="WHITE")
+    grid = Image.new('RGB', size=(cols*(w + margin) - margin, rows*(h + margin) - margin), color="WHITE")
     grid_w, grid_h = grid.size
     
     for i in range(rows * cols):
