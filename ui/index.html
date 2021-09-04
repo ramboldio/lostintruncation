@@ -16,15 +16,13 @@
 	<link rel="stylesheet" href="https://use.typekit.net/tee2ntl.css">
 </head>
 
-<body style="background-color: black; height: 100%">
+<body style="background-color: black">
 
-	<div style="height: 100%" id="wrapper">
-		<div style="height: 100%" id="questions">
+		<div style="height: 100%; text-align: center;" id="questions">
 
 			<!-- Intro -->
 			<div style="height: 100%" id="q0">
-				<div
-					style="position: absolute; top: 0; left: 0; z-index: 100; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-wrap: wrap">
+				<div style="position: absolute; top: 0; left: 0; z-index: 100; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; flex-wrap: wrap">
 					<h1 style="width: 100%; font-size: 110px; text-align: center; line-height: 115px; margin-top: 20px">
 						LOST IN TRUNCATION</h1>
 					<button class="btn" style="width: 300px" onclick="next()">START</button>
@@ -43,8 +41,8 @@
 					<div class="cameraContainer">
 						<div class="lds-dual-ring hide-ring" id="ring"></div>
 						<img class="svgContainer" src="/images/Schablone.png">
-						<canvas class="canvasContainer" id="canvas" class="d-none"></canvas>
-						<video class="videoContainer" id="webcam" autoplay playsinline></video>
+						<canvas class="canvasContainer d-none" style="width: 100%" id="canvas"></canvas>
+						<video class="videoContainer" id="webcam" style="width: 100%" autoplay playsinline></video>
 					</div>
 				</div>
 				<p style="color:white">Place your head inside the shape.</p>
@@ -157,7 +155,6 @@
 			</div>
 
 		</div>
-	</div>
 
 	<script src="js/webcam-easy.min.js"></script>
 	<script src="js/ui.js"></script>
