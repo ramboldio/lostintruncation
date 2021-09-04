@@ -71,21 +71,12 @@ def print_image(image_path='test.jpg'):
     # Save the picture to a temporary file for printing
     output = mktemp(prefix='jpg')
     img = Image.open(image_path)
-    img.thumbnail((500, 500))
+
     # generate 2x2 grid
     img_grid = image_grid(img, 2, 2, margin=100)
     # add white border
     img_grid = ImageOps.expand(img_grid, border=100, fill='white')
     # Send the picture to the printer
-
-    # make image to use up all available space of the printer which is 100,0 x 148,0 mm with 300dpi
-    printer_output_size = (1181, 1748)
-    # result_img = Image.new('RGB', size color="WHITE")
-
-    img_grid = add_white_background(img_grid, printer_output_size)
-    img_grid = img_grid.rotate(180)
-
-    img_grid.show()
 
     img_grid.save(output, format='jpeg')
 
@@ -111,14 +102,6 @@ def image_grid(img, rows=2, cols=2, margin=30):
     for i in range(rows * cols):
         grid.paste(img, box=(i%cols*(w + margin), i//cols*(h + margin)))
     return grid
-
-def add_white_background(img, size):
-    img_w, img_h = img.size
-    background = Image.new('RGB', size, (255, 255, 255, 255))
-    bg_w, bg_h = background.size
-    offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
-    background.paste(img, offset)
-    return background
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
