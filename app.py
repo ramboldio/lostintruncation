@@ -7,19 +7,28 @@ from time import sleep
 from PIL import Image, ImageOps
 
 from flask import Flask
-from flask import request, send_from_directory
-from flask_cors import CORS, cross_origin
+from flask import request, send_from_directory, redirect
+         
+from pyngrok import ngrok
+
 from werkzeug.utils import secure_filename
 
 photo_printer_name = 'Canon-SELPHY-CP1300'
 #photo_printer_name = 'ZJ-58'
+port = 5000
 
 app = Flask(__name__, static_url_path='',  static_folder='ui')
-CORS(app)
-cups_connection = cups.Connection()
 
+public_url = ngrok.connect(port, bind_tls=True).public_url
+print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
+app.config["BASE_URL"] = public_url
+
+cups_connection = cups.Connection()
 colab_url = os.environ.get('COLABURL')
 
+@app.route('/ngrok')
+def redirect_to_ngrok():
+    return redirect(public_url, code=302)
 
 @app.route('/submit', methods = ['POST'])
 def submit():
@@ -101,7 +110,6 @@ def image_grid(img, rows=2, cols=2, margin=30):
         grid.paste(img, box=(i%cols*(w + margin), i//cols*(h + margin)))
     return grid
 
-
 def add_white_background(img, size):
     img_w, img_h = img.size
     background = Image.new('RGB', size, (255, 255, 255, 255))
@@ -109,3 +117,6 @@ def add_white_background(img, size):
     offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
     background.paste(img, offset)
     return background
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=port)
