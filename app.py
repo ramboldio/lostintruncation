@@ -8,7 +8,8 @@ from PIL import Image, ImageOps
 
 from flask import Flask
 from flask import request, send_from_directory, redirect
-         
+from flask_cors import CORS, cross_origin
+
 from pyngrok import ngrok
 
 from werkzeug.utils import secure_filename
@@ -18,6 +19,7 @@ photo_printer_name = 'Canon-SELPHY-CP1300'
 port = 5000
 
 app = Flask(__name__, static_url_path='',  static_folder='ui')
+CORS(app)
 
 public_url = ngrok.connect(port, bind_tls=True).public_url
 print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
