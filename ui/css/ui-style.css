@@ -100,7 +100,7 @@ input {
 
 .videoContainer{ z-index:1; }
 .canvasContainer{ position:absolute; top: 0px; z-index:2; }
-.svgContainer{ position:absolute; display:hidden; top: 0px;  height: 100%; z-index:3; }
+.svgContainer{ position:absolute; top: 0px; ; z-index:3; }
 
 .container {
   width: 100%;
