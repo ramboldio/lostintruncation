@@ -18,7 +18,7 @@
 
 <body style="background-color: black">
 
-		<div style="height: 100%; text-align: center;" id="questions">
+		<div style="height: 100%" id="questions">
 
 			<!-- Intro -->
 			<div style="height: 100%" id="q0">
@@ -37,16 +37,12 @@
 
 			<!-- Photo -->
 			<div id="q1" style="display: none">
-				<div class="container">
 					<div class="cameraContainer">						
-						<div style="height:700px; width:700px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
 							<div class="lds-dual-ring hide-ring" id="ring"></div>
-							<img class="svgContainer" style="width: 650px" src="/images/Schablone.png">
-							<canvas class="canvasContainer d-none" style="width: 100%" id="canvas"></canvas>
-							<video class="videoContainer" style="width: 100%" id="webcam" autoplay playsinline></video>
-						</div>
+							<img class="svgContainer" src="/images/Schablone.png">
+							<canvas class="canvasContainer" id="canvas"></canvas>
+							<video class="videoContainer" id="webcam" autoplay playsinline></video>
 					</div>
-				</div>
 				<p style="color:white">Place your head inside the shape.</p>
 				<button class="btn" style="margin-top: 60px" onclick="webcam.snap(); upload(); timeFunction(); showloading()">Take a photo</button>
 			</div>

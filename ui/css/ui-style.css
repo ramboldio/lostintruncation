@@ -90,23 +90,16 @@ input {
 }
 
 .cameraContainer { 
-  position:relative; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 700px; 
+  width: 700px;
+  margin: 100px auto 0 auto;
 }
 
-.videoContainer{ z-index:1; }
-.canvasContainer{ position:absolute; top: 0px; z-index:2; }
-.svgContainer{ position:absolute; top: 0px; ; z-index:3; }
-
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+.videoContainer{ height: 150%; left: 0; right: 0; z-index:1; }
+.canvasContainer{ position:absolute; left: 0; right: 0; z-index:2; }
+.svgContainer{ height: 100%; position:absolute; left: 0; right: 0; z-index:3; }
 
 /* LOADING ANIMATION */
 
