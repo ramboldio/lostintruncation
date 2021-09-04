@@ -64,10 +64,19 @@ def print_image(image_path='test.jpg'):
     img_grid = image_grid(img, 2, 2, margin=100)
     # add white border
     img_grid = ImageOps.expand(img_grid, border=100, fill='white')
-    img_grid.save(output, format='jpeg')
-    # img_grid.show()
     # Send the picture to the printer
-    print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
+
+    # make image to use up all available space of the printer which is 100,0 x 148,0 mm with 300dpi
+    printer_output_size = (1181, 1748)
+    # result_img = Image.new('RGB', size color="WHITE")
+
+    img_grid.thumbnail(printer_output_size, Image.ANTIALIAS)
+
+    img_grid.show()
+
+    img_grid.save(output, format='jpeg')
+
+    print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {"orientation-requested": "6"})
 
     # Wait until the job finishes
     while cups_connection.getJobs().get(print_id, None):
