@@ -21,7 +21,7 @@ port = 5000
 app = Flask(__name__, static_url_path='',  static_folder='ui')
 CORS(app)
 
-public_url = ngrok.connect(port, hostname=os.environ.get('NGROKURL') region="eu", bind_tls=True).public_url
+public_url = ngrok.connect(port, hostname=os.environ.get('NGROKURL'), region="eu", bind_tls=True).public_url
 print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
 app.config["BASE_URL"] = public_url
 
