@@ -1,5 +1,7 @@
 flask
+flask-cors
+pyngrok
 pycups
 pillow
 PySerial
-flask-cors
+requests
