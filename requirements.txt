@@ -5,3 +5,4 @@ pycups
 pillow
 PySerial
 requests
+python-dotenv
