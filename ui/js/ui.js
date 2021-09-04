@@ -4,8 +4,8 @@
 //var ipImage = 'http://192.168.50.201:5000/submit';
 //var ipText = 'http://192.168.50.201:5000/submit_text';
 
-var ipImage = 'http://192.168.178.57:5000/submit';
-var ipText = 'http://192.168.178.57:5000/submit_text';
+var ipImage = '/submit';
+var ipText = '/submit_text';
 
 var showing = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var questions = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
