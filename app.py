@@ -53,10 +53,13 @@ def submit():
 def submit_text():
     input_text = request.form['text']
     print("start generation process")
-    response_text = requests.post(colab_url + "/generate_text", data={"text": input_text}).text
+    
+    response = requests.post(colab_url + "/generate_text", data={"text": input_text})
+    response.raise_for_status()
+
     print("start printing process")
-    print(response_text)
-    print_text(response_text)
+    print(response.text)
+    print_text(response.text)
     return "success"
 
 def stylize_image_colab(filename):
@@ -64,6 +67,8 @@ def stylize_image_colab(filename):
 
     files = {'file': open(filename, 'rb')}
     response = requests.post(colab_url + "/generate_image", files=files)
+    response.raise_for_status()
+
     file = open(output_filename, "wb")
     file.write(response.content)
     file.close()
