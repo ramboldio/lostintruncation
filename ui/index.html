@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="https://use.typekit.net/tee2ntl.css">
 </head>
 
-<body style="background-color: red; overflow: hidden">
+<body style="background-color: black; overflow: hidden">
 	
 		<div id="slides">
 
@@ -29,15 +29,8 @@
 					<button class="btn" style="width: 300px" onclick="next()">START</button>
 				</div>
 				
-				
-					<video style="object-fit: cover;
-					width: 100vw;
-					height: 100vh;
-					position: fixed;
-					top: 0;
-					left: 0;" muted autoplay loop src="/images/LIT_Site_Landing_Clip.mp4"></video>
-			
-
+				<video style="object-fit: cover; width: 100vw; height: 100vh; position: fixed; top: 0; left: 0;" muted autoplay loop src="/images/LIT_Site_Landing_Clip.mp4"></video>
+		
 			</div>
 
 
@@ -50,8 +43,8 @@
 							<video class="videoContainer" id="webcam" autoplay playsinline></video>
 					</div>
 					<div style="text-align: center; margin: 0 100px">
-						<p style="color:white">Place your head inside the shape.</p>
-						<button class="btn" style="margin-top: 60px; width: 600px" onclick="webcam.snap(); upload(); timeFunction(); showloading(); hideTemplate()">Take a photo</button>
+						<p style="color:white; font-size: 20px;">Take a photo and answer some questions so that our AI can modify your appearance based on your moral decisions. It's important to place your head inside the shape.</p>
+						<button class="btn" style="margin-top: 60px; width: 300px" onclick="webcam.snap(); upload(); timeFunction(); showloading(); hideTemplate()">Take a photo</button>
 					</div>
 			</div>
 
