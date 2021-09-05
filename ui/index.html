@@ -39,14 +39,14 @@
 			<!-- Photo -->
 			<div id="q1" style="display: none">
 					<div class="cameraContainer">						
-							<div class="lds-dual-ring hide-ring" id="ring"></div>
-							<img class="svgContainer" src="/images/Schablone.png">
+							<div class="lds-dual-ring hide" id="ring"></div>
+							<img class="svgContainer" src="/images/Schablone.png" id="template">
 							<canvas class="canvasContainer" id="canvas"></canvas>
 							<video class="videoContainer" id="webcam" autoplay playsinline></video>
 					</div>
 					<div style="text-align: center; margin: 0 100px">
 						<p style="color:white">Place your head inside the shape.</p>
-						<button class="btn" style="margin-top: 60px; wid" onclick="webcam.snap(); upload(); timeFunction(); showloading()">Take a photo</button>
+						<button class="btn" style="margin-top: 60px; wid" onclick="webcam.snap(); upload(); timeFunction(); showloading(); hideTemplate()">Take a photo</button>
 					</div>
 			</div>
 

@@ -46,7 +46,11 @@ function timeFunction3() {
 
 function showloading() {
 	document.getElementById("ring").classList.add('show-ring');
-	document.getElementById("ring").classList.remove('hide-ring');
+	document.getElementById("ring").classList.remove('hide');
+}
+
+function hideTemplate() {
+	document.getElementById("template").classList.add('hide');
 }
 
 
