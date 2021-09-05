@@ -8,12 +8,12 @@ var ipImage = '/submit';
 var ipText = '/submit_text';
 
 var showing = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var questions = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
+var slides = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
 
 function next() {
     var qElems = [];
-    for (var i = 0; i < questions.length; i++) {
-        qElems.push(document.getElementById(questions[i]));   
+    for (var i = 0; i < slides.length; i++) {
+        qElems.push(document.getElementById(slides[i]));   
     }
     for (var i = 0; i < showing.length; i++) {
         if (showing[i] == 1) {
