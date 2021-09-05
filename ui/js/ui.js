@@ -33,7 +33,7 @@ function next() {
 
 //WAIT A BIT AFTER GOING FROM PHOTO TO QUESTIONS
 function timeFunction() {
-	setTimeout(function() { next(); }, 3000000);
+	setTimeout(function() { next(); }, 3000);
 }
 
 function timeFunction2() {
