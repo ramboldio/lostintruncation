@@ -33,7 +33,7 @@ function next() {
 
 //WAIT A BIT AFTER GOING FROM PHOTO TO QUESTIONS
 function timeFunction() {
-	setTimeout(function() { next(); }, 3000);
+	setTimeout(function() { next(); }, 3000000);
 }
 
 function timeFunction2() {
@@ -83,7 +83,6 @@ webcam.start()
 		console.log(err);
 	});
 
-var picture = webcam.snap();
 //document.querySelector('#download-photo').href = picture;
 //console.log(picture);
 
@@ -120,3 +119,4 @@ const onSelectFile = () => upload(input.files[0]);
 // Add a listener on your input
 // It will be triggered when a file will be selected
 //input.addEventListener('change', onSelectFile, false);
+

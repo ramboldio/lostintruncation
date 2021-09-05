@@ -19,7 +19,7 @@
 
 <body style="background-color: black">
 
-		<div style="height: 100vh; width: 100vw; overflow: hidden;" id="slides">
+		<div style="height: 100%; width: 100%; overflow: hidden;" id="slides">
 
 			<!-- Intro -->
 			<div style="height: 100%" id="q0">
@@ -29,8 +29,8 @@
 					<button class="btn" style="width: 300px" onclick="next()">START</button>
 				</div>
 				
-				<div style="position: absolute; margin: 0 auto; display: flex; justify-content: center;">
-					<video id="player" style="height: 100vh" muted autoplay loop src="/images/LIT_Site_Landing_Clip.mp4"></video>
+				<div style="margin: 0 auto; display: flex; justify-content: center;">
+					<video style="height: 100vh" muted autoplay loop src="/images/LIT_Site_Landing_Clip.mp4"></video>
 				</div>
 
 			</div>
@@ -42,7 +42,7 @@
 							<div class="lds-dual-ring hide-ring" id="ring"></div>
 							<img class="svgContainer" src="/images/Schablone.png">
 							<canvas class="canvasContainer" id="canvas"></canvas>
-							<video class="videoContainer" id="webcam" autoplay playsinline></video>
+							<video height="700px" class="videoContainer" id="webcam" autoplay playsinline></video>
 					</div>
 					<div style="text-align: center; margin: 0 100px">
 						<p style="color:white">Place your head inside the shape.</p>
