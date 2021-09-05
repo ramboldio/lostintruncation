@@ -116,9 +116,9 @@ input {
   margin: 100px auto 0 auto;
 }
 
-.videoContainer{ width: 100%; left: 0; right: 0; z-index:1; }
+.videoContainer{ width: inherit; left: 0; right: 0; z-index:1; }
 .canvasContainer{ position:absolute; left: 0; right: 0; z-index:2; }
-.svgContainer{ height: 100%; position:absolute; left: 0; right: 0; z-index:3; }
+.svgContainer{ width: 100%; position:absolute; left: 0; right: 0; z-index:3; }
 
 /* LOADING ANIMATION */
 
