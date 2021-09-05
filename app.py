@@ -2,6 +2,7 @@ import os
 import requests
 import serial
 import cups
+from threading import Lock
 from tempfile import mktemp
 from time import sleep
 from PIL import Image, ImageOps
@@ -11,10 +12,9 @@ from flask import request, send_from_directory, redirect
 from flask_cors import CORS, cross_origin
 
 from pyngrok import ngrok
-
 from werkzeug.utils import secure_filename
-
 from dotenv import load_dotenv
+
 load_dotenv()  # take environment variables from .env.
 
 photo_printer_name = 'Canon-SELPHY-CP1300'
@@ -24,12 +24,17 @@ port = 5000
 app = Flask(__name__, static_url_path='',  static_folder='ui')
 CORS(app)
 
+colab_url = os.environ.get('COLABURL')
+
 public_url = ngrok.connect(port, hostname=os.environ.get('NGROKURL'), bind_tls=True).public_url
 print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
 app.config["BASE_URL"] = public_url
 
 cups_connection = cups.Connection()
-colab_url = os.environ.get('COLABURL')
+
+thermal_printer_lock = Lock()
+photo_printer_lock = Lock()
+
 
 @app.route('/')
 def redirect_to_ngrok():
@@ -88,7 +93,6 @@ def print_image(image_path='test.jpg'):
 
     # make image to use up all available space of the printer which is 100,0 x 148,0 mm with 300dpi
     printer_output_size = (1181, 1748)
-    # result_img = Image.new('RGB', size color="WHITE")
 
     img_grid = add_white_background(img_grid, printer_output_size)
     img_grid = img_grid.rotate(180)
@@ -96,19 +100,20 @@ def print_image(image_path='test.jpg'):
 
     img_grid.save(output, format='jpeg')
 
-    print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
-
-    # Wait until the job finishes
-    while cups_connection.getJobs().get(print_id, None):
-        sleep(1)
+    with photo_printer_lock:
+        print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
+        # Wait until the job finishes
+        while cups_connection.getJobs().get(print_id, None):
+            sleep(1)
 
     print("yo finished")
 
 
 def print_text(text="yoyoyoyoyo"):
-    text = text.encode("ascii", "ignore").decode()
-    ser = serial.Serial("/dev/serial0", baudrate=19200)
-    ser.write(bytes(text + "\n", 'ascii'))
+    with thermal_printer_lock:
+        text = text.encode("ascii", "ignore").decode()
+        ser = serial.Serial("/dev/serial0", baudrate=19200)
+        ser.write(bytes(text + "\n", 'ascii'))
 
 def image_grid(img, rows=2, cols=2, margin=30):
     w, h = img.size
