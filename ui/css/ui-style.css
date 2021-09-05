@@ -116,7 +116,7 @@ input {
   margin: 100px auto 0 auto;
 }
 
-.videoContainer{ transform: scale(-0.7,0.7); left: 0; right: 0; z-index:1; }
+.videoContainer{ transform: scale(-0.3,0.3); left: 0; right: 0; z-index:1; }
 .canvasContainer{ position:absolute; left: 0; right: 0; z-index:2; }
 .svgContainer{ width: 100%; position:absolute; left: 0; right: 0; z-index:3; }
 
