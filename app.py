@@ -14,6 +14,9 @@ from pyngrok import ngrok
 
 from werkzeug.utils import secure_filename
 
+from dotenv import load_dotenv
+load_dotenv()  # take environment variables from .env.
+
 photo_printer_name = 'Canon-SELPHY-CP1300'
 #photo_printer_name = 'ZJ-58'
 port = 5000
@@ -21,7 +24,7 @@ port = 5000
 app = Flask(__name__, static_url_path='',  static_folder='ui')
 CORS(app)
 
-public_url = ngrok.connect(port, hostname=os.environ.get('NGROKURL'), region="eu", bind_tls=True).public_url
+public_url = ngrok.connect(port, hostname=os.environ.get('NGROKURL'), bind_tls=True).public_url
 print(" * ngrok tunnel \"{}\" -> \"http://127.0.0.1:{}\"".format(public_url, port))
 app.config["BASE_URL"] = public_url
 
