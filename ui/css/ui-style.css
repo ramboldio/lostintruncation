@@ -1,5 +1,9 @@
 /*UI STYLE*/
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   overflow: hidden;
   height: 100vh;
