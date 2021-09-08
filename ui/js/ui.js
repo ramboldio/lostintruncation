@@ -38,12 +38,12 @@ function timeFunction() {
 
 //from information "takes a few seconds" to "your data will be safe with us"
 function timeFunction2() {
-	setTimeout(function() { next(); }, 240000);
+	setTimeout(function() { next(); }, 180000);
 }
 
 //reload
 function timeFunction3() {
-	setTimeout(function() { location.reload(); }, 300000);
+	setTimeout(function() { location.reload(); }, 100000);
 }
 
 function showloading() {
