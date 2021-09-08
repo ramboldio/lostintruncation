@@ -1,5 +1,9 @@
 /*UI STYLE*/
 
+html {
+  overflow: hidden;
+}
+
 body {
   font-family: nimbus-sans-extended, sans-serif;
   font-size: 16px;
