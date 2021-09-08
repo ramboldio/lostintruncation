@@ -7,9 +7,9 @@ body {
   color: #828282;
   margin: 0;
   background-color: black; 
-  overflow-x:hidden;
+  overflow: hidden;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 }
 
 .introcontainer {
@@ -42,7 +42,7 @@ h1 {
   line-height: 66px;
   font-weight: 400;
   color: white;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 /* Buttons */
@@ -76,10 +76,6 @@ h1 {
   outline: none !important;
 }
 
-body {
-  font-family: sans-serif;
-  background: green;
-}
 h2 {
   margin: 5px 0;
 }
@@ -163,12 +159,6 @@ input {
   }
 }
 
-/* base elements */
-
-h1 {
-  margin: 0;
-}
-
 /* containers */
 
 .container {
@@ -209,5 +199,3 @@ h1 {
     width: 100%
   }
 }
-
-
