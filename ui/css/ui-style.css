@@ -95,9 +95,11 @@ input {
 #submit {
   background: green;
 }
+
 #reset {
   background: red;
 }
+
 #answer {
   border: 1px dashed #ccc;
   background: #eee;
