@@ -4,7 +4,7 @@ import serial
 import cups
 from threading import Lock
 from tempfile import mktemp
-from time import sleep
+from time import sleep, strftime
 from PIL import Image, ImageOps
 
 from flask import Flask
@@ -68,7 +68,7 @@ def submit_text():
     return "success"
 
 def stylize_image_colab(filename):
-    output_filename = 'stylized-image.png'
+    output_filename = "stylized-image-{}.png".format(strftime("%Y%m%d-%H%M%S"))
 
     files = {'file': open(filename, 'rb')}
     response = requests.post(colab_url + "/generate_image", files=files)
