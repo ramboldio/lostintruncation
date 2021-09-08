@@ -163,5 +163,56 @@ input {
   }
 }
 
+/* base elements */
+
+body {
+  padding: 20px;
+  font: 100% helvetica, arial, sans-serif;
+}
+
+h1 {
+  margin: 0;
+}
+
+/* containers */
+
+.container {
+  margin: 100px auto 0 auto;
+  border: 2px solid white;
+  width: 700px;
+}
+/* progress bar */
+
+.progress {
+  width: 100%;
+  height: 50px;
+  background: white;
+  -webkit-animation: move .180s;
+  animation: move 180s;
+}
+
+/* animation */
+
+@-webkit-keyframes move
+{
+  from {
+    width: 0;
+  }
+   
+  to {
+    width: 100%
+  }
+}
+
+@keyframes move
+{
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%
+  }
+}
 
 

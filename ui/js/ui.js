@@ -7,8 +7,8 @@
 var ipImage = '/submit';
 var ipText = '/submit_text';
 
-var showing = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-var slides = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'];
+var showing = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var slides = ['q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10'];
 
 function next() {
     var qElems = [];
@@ -36,12 +36,14 @@ function timeFunction() {
 	setTimeout(function() { next(); }, 3000);
 }
 
+//from information "takes a few seconds" to "your data will be safe with us"
 function timeFunction2() {
-	setTimeout(function() { next(); }, 8000);
+	setTimeout(function() { next(); }, 240000);
 }
 
+//reload
 function timeFunction3() {
-	setTimeout(function() { location.reload(); }, 30000);
+	setTimeout(function() { location.reload(); }, 300000);
 }
 
 function showloading() {

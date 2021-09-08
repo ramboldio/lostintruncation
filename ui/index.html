@@ -20,7 +20,7 @@
 	
 		<div id="slides">
 
-			<!-- Intro -->
+			<!-- Startsceen -->
 			<div id="q0">
 
 				<div style="position: absolute; top: 0; left: 0; z-index: 100; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; flex-wrap: wrap">
@@ -33,9 +33,16 @@
 		
 			</div>
 
+			<!-- Intro -->
+
+			<div style="text-align: center;" id="q1" style="display: none">
+				<h1 style="margin: 0px 50px; padding-top: 300px">Take a photo and answer the following questions so that our AI can generate your true self based on your answers and print out your passport photo.</h1>
+				<button class="btn" style="width: 300px; margin-top: 100px" onclick="next()">NEXT</button>
+			</div>
+
 
 			<!-- Photo -->
-			<div id="q1" style="display: none">
+			<div id="q2" style="display: none; background-color: black">
 					<div class="cameraContainer">						
 							<div class="lds-dual-ring hide" id="ring"></div>
 							<img class="svgContainer" src="/images/Schablone.png" id="template">
@@ -43,14 +50,14 @@
 							<video class="videoContainer" id="webcam" autoplay playsinline></video>
 					</div>
 					<div style="text-align: center; margin: 0 275px;">
-						<p style="color:white; font-size: 25px; line-height: 28px;">Take a photo and answer the following questions so that our AI can show you your true self based on your answers. <br><br><i>It's important to place your head perfectly inside the shape!</i></p>
-						<button class="btn" style="margin-top: 60px; width: 300px" onclick="webcam.snap(); upload(); timeFunction(); showloading(); hideTemplate()">Take a photo</button>
+						<p style="color: #e7ff00; font-size: 25px; line-height: 28px;"><i>It's important to place your head perfectly inside the shape!</i></p>
+						<button class="btn" style="margin-top: 60px; width: 300px" onclick="webcam.snap(); upload(); timeFunction(); showloading(); hideTemplate()">TAKE A PHOTO</button>
 					</div>
 			</div>
 
 			<!-- Questions -->
 			<div style="text-align: center; margin: 0 100px;">
-				<div id="q2" style="display: none">
+				<div id="q3" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">1/6</h2>
 						<h1>Your Job could be replaced by AI in the future. How does that make you feel?</h1>
@@ -66,7 +73,7 @@
 						not worried. There will be new jobs.</button>
 				</div>
 
-				<div id="q3" style="display: none">
+				<div id="q4" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">2/6</h2>
 						<h1>Which of these places would you prefer to travel to?</h1>
@@ -79,7 +86,7 @@
 						value='The participant has stated, that they would prefer Paris as their next travel destination. It can be concluded, that the participant is a very ambitious person. However, they do have a high desire for self-actualization. This could be an issue in the future, because they may behave in a problematic, ostentatious way at certain times. Furthermore, it seems like'>Paris</button>
 				</div>
 
-				<div id="q4" style="display: none">
+				<div id="q5" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">3/6</h2>
 						<h1>Which of these diets do you follow?</h1>
@@ -93,7 +100,7 @@
 						eat everything</button>
 				</div>
 
-				<div id="q5" style="display: none">
+				<div id="q6" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">4/6</h2>
 						<h1>Which of these meals would you eat for breakfast?</h1>
@@ -109,7 +116,7 @@
 						of Coffee and a Cigarette</button>
 				</div>
 
-				<div id="q6" style="display: none">
+				<div id="q7" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">5/6</h2>
 						<h1>What monthly income would satisfy you, if you would only have to pay for your own needs?</h1>
@@ -125,7 +132,7 @@
 						EUR or more</button>
 				</div>
 
-				<div id="q7" style="display: none">
+				<div id="q8" style="display: none">
 					<div style="height: 50vh">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">6/6</h2>
 						<h1>Would you make an immoral decision, if it would benefit a lot of people?</h1>
@@ -141,13 +148,17 @@
 						I would never make an immoral decision.</button>
 				</div>
 
-				<div id="q8" style="display: none">
-					<div style="height: 100vh">
+				<div id="q9" style="display: none">
+					<div style="height: 100vh; text-align: center;">
 						<h2 style="width: 100%; margin-top: 50px; margin-bottom: 100px">Finished</h2>
-						<p style="color:white; font-size: 25px; line-height: 28px;">Your image will be generated now. <br>This will take a few seconds.</p>
+						<h1 style="color:white">Your passport photo will be generated. This may take a few minutes.</h1>
+						<div class="container">
+							<div class="progress"></div>
+							
+						  </div>
 					</div>
 				</div>
-				<div id="q9" style="display: none">
+				<div id="q10" style="display: none">
 					<div style="height: 100vh; display: flex; justify-content: center; align-items: center">
 							<h1 style="padding-bottom: 80px; margin-bottom: 80px;">Your data is safe with us.</h1>
 					</div>
