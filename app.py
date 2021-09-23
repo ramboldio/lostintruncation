@@ -103,8 +103,9 @@ def print_image(image_path='test.jpg'):
     with photo_printer_lock:
         print_id = cups_connection.printFile(photo_printer_name, output, "Photo Booth", {})
         # Wait until the job finishes
-        while cups_connection.getJobs().get(print_id, None):
-            sleep(1)
+    
+    while check_if_job_finished_threadsafe(print_id):
+        sleep(1)
 
     print("yo finished")
 
@@ -131,6 +132,14 @@ def add_white_background(img, size):
     offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
     background.paste(img, offset)
     return background
+
+def check_if_job_finished_threadsafe(print_id):
+    is_finished = False
+
+    with photo_printer_lock:
+        is_finished = cups_connection.getJobs().get(print_id, None)
+    
+    return is_finished
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port)
