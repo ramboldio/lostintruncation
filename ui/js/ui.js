@@ -43,7 +43,7 @@ function timeFunction2() {
 
 //reload
 function timeFunction3() {
-	setTimeout(function() { location.reload(); }, 100000);
+	setTimeout(function() { location.reload(); }, 580000);
 }
 
 function showloading() {
