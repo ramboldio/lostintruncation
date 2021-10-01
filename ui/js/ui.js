@@ -33,17 +33,17 @@ function next() {
 
 //WAIT A BIT AFTER GOING FROM PHOTO TO QUESTIONS
 function timeFunction() {
-	setTimeout(function() { next(); }, 3000);
+	setTimeout(function() { next(); }, 2000);
 }
 
 //from information "takes a few seconds" to "your data will be safe with us"
 function timeFunction2() {
-	setTimeout(function() { next(); }, 480000);
+	setTimeout(function() { next(); }, 240000);
 }
 
 //reload
 function timeFunction3() {
-	setTimeout(function() { location.reload(); }, 580000);
+	setTimeout(function() { location.reload(); }, 300000);
 }
 
 function showloading() {

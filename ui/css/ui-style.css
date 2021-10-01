@@ -188,8 +188,8 @@ input {
   width: 100%;
   height: 50px;
   background: white;
-  -webkit-animation: move .480s;
-  animation: move 480s;
+  -webkit-animation: move .300s;
+  animation: move 300s;
 }
 
 /* animation */
